@@ -1,0 +1,284 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\checkjoao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\checkjoao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\deletarlinha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\deletarlinha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\restaurar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\restaurar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\bsoft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\bsoft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\bsoft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\bsoft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\restaurar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\restaurar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\arquivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\arquivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\checkjoao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\checkjoao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\deletarlinha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\deletarlinha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\importar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\importar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\importar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\importar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\arquivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\arquivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\checka\\frete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\frete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|c:\\users\\moniq\\desktop\\checkacode v1.0\\checka\\frete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7209943-6B8F-4181-93FF-6FB1BDE6D0A1}|Checka\\Checka.csproj|solutionrelative:checka\\frete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 694,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BSoft.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\BSoft.cs",
+              "RelativeDocumentMoniker": "Checka\\BSoft.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\BSoft.cs [Projeto]",
+              "RelativeToolTip": "Checka\\BSoft.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:52:23.188Z",
+              "IsPinned": true,
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BSoft.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\BSoft.cs",
+              "RelativeDocumentMoniker": "Checka\\BSoft.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\BSoft.cs",
+              "RelativeToolTip": "Checka\\BSoft.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHgDAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T13:32:02.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Restaurar.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Restaurar.cs",
+              "RelativeDocumentMoniker": "Checka\\Restaurar.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Restaurar.cs",
+              "RelativeToolTip": "Checka\\Restaurar.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAkwFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T14:33:11.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Program.cs",
+              "RelativeDocumentMoniker": "Checka\\Program.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Program.cs",
+              "RelativeToolTip": "Checka\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T20:21:23.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DeletarLinha.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\DeletarLinha.cs",
+              "RelativeDocumentMoniker": "Checka\\DeletarLinha.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\DeletarLinha.cs",
+              "RelativeToolTip": "Checka\\DeletarLinha.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T19:42:07.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CheckJoao.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\CheckJoao.cs",
+              "RelativeDocumentMoniker": "Checka\\CheckJoao.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\CheckJoao.cs [Projeto]*",
+              "RelativeToolTip": "Checka\\CheckJoao.cs [Projeto]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T18:00:43.568Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CheckJoao.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\CheckJoao.cs",
+              "RelativeDocumentMoniker": "Checka\\CheckJoao.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\CheckJoao.cs*",
+              "RelativeToolTip": "Checka\\CheckJoao.cs*",
+              "ViewState": "AgIAAEICAAAAAAAAAAAkwFgCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T18:17:40.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Arquivo.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Arquivo.cs",
+              "RelativeDocumentMoniker": "Checka\\Arquivo.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Arquivo.cs",
+              "RelativeToolTip": "Checka\\Arquivo.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAiwCMAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T18:24:25.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Restaurar.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Restaurar.cs",
+              "RelativeDocumentMoniker": "Checka\\Restaurar.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Restaurar.cs [Projeto]",
+              "RelativeToolTip": "Checka\\Restaurar.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T18:47:41.512Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Frete.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Frete.cs",
+              "RelativeDocumentMoniker": "Checka\\Frete.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Frete.cs [Projeto]",
+              "RelativeToolTip": "Checka\\Frete.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T21:42:33.42Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Frete.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Frete.cs",
+              "RelativeDocumentMoniker": "Checka\\Frete.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Frete.cs",
+              "RelativeToolTip": "Checka\\Frete.cs",
+              "ViewState": "AgIAABsBAAAAAAAAAAAAALECAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T23:39:51.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Home.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Home.cs",
+              "RelativeDocumentMoniker": "Checka\\Home.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Home.cs [Projeto]",
+              "RelativeToolTip": "Checka\\Home.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T18:47:14.106Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Arquivo.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Arquivo.cs",
+              "RelativeDocumentMoniker": "Checka\\Arquivo.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Arquivo.cs [Projeto]",
+              "RelativeToolTip": "Checka\\Arquivo.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T18:46:05.482Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Importar.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Importar.cs",
+              "RelativeDocumentMoniker": "Checka\\Importar.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Importar.cs [Projeto]",
+              "RelativeToolTip": "Checka\\Importar.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T18:47:23.823Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Importar.cs",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Importar.cs",
+              "RelativeDocumentMoniker": "Checka\\Importar.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Importar.cs",
+              "RelativeToolTip": "Checka\\Importar.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADwAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T18:55:57.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DeletarLinha.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\DeletarLinha.cs",
+              "RelativeDocumentMoniker": "Checka\\DeletarLinha.cs",
+              "ToolTip": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\DeletarLinha.cs [Projeto]",
+              "RelativeToolTip": "Checka\\DeletarLinha.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T18:46:34.543Z",
+              "EditorCaption": " [Projeto]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
