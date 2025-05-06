@@ -67,6 +67,7 @@ namespace Checka
 
         private void button2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Você já importou os fretes?");
             new Frete().Show();
         }
 
@@ -93,8 +94,7 @@ namespace Checka
 
                         if (row.Cells["Checkado"].Value?.ToString() == "OK")
                         {
-                            var command2 = new MySqlCommand($"INSERT INTO checka.arquivo SELECT * FROM checka.principal WHERE ID = {row.Cells[0].Value}", conexao).ExecuteNonQuery();
-
+                            var command2 = new MySqlCommand($"INSERT INTO checka.arquivo SELECT * FROM checka.principal WHERE ID = {row.Cells[0].Value?.ToString()}", conexao).ExecuteNonQuery();
                             var command3 = new MySqlCommand($"DELETE FROM checka.principal WHERE ID = {row.Cells[0].Value?.ToString()}", conexao);
                             command3.ExecuteNonQuery();
                         }

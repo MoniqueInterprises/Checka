@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Checka")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+faa1e45cd89b14ab9e759c8ac65490ac1caaa191")]
 [assembly: System.Reflection.AssemblyProductAttribute("Checka")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Checka")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

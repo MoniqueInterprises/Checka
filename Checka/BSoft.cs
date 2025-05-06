@@ -1,17 +1,7 @@
-﻿using K4os.Compression.LZ4.Streams.Frames;
-using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
+﻿using MySql.Data.MySqlClient;
 using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Checka
 {
@@ -22,10 +12,26 @@ namespace Checka
         List<int> IDs = new List<int>();
         DataGridView CRBsoftDatagridSave = new DataGridView();
         List<DataGridViewRow> ListaRows = new List<DataGridViewRow>();
-
+        List<object[]> linhasPlanilhaCTE = new List<object[]>();
         public BSoft()
         {
             InitializeComponent();
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.Commercial;
+            using (ExcelPackage pacote = new ExcelPackage(new FileInfo("C:\\Users\\moniq\\desktop\\Info.xlsx")))
+            {
+                ExcelWorksheet planilha = pacote.Workbook.Worksheets.FirstOrDefault(sheet => sheet.Name == "CTE");
+                int totalColunas = planilha.Dimension.End.Column;
+
+                for (int i = 2; i <= planilha.Dimension.End.Row; i++)
+                {
+                    object[] linha = new object[totalColunas + 1]; // +1 pois as colunas começam em 1
+                    for (int j = 1; j <= totalColunas; j++)
+                    {
+                        linha[j] = planilha.Cells[i, j].Value;
+                    }
+                    linhasPlanilhaCTE.Add(linha);
+                }
+            }
         }
 
         private void PortalDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -76,6 +82,8 @@ namespace Checka
 
         private void RefreshBsoft_Click(object sender, EventArgs e)
         {
+            DateTime contagemtempo1 = DateTime.Now;
+            Console.Clear();
             using (MySqlConnection conexao = new MySqlConnection(Auxl.Str))
             {
                 conexao.Open();
@@ -117,13 +125,104 @@ namespace Checka
                     BSoftDataGrid.Columns.Add(colFiltro);
                 }
 
+                if (!dataTable.Columns.Contains("ValorCTE"))
+                {
+                    var colFiltro = new DataGridViewAutoFilterTextBoxColumn
+                    {
+                        DataPropertyName = "ValorCTE",
+                        HeaderText = "ValorCTE",
+                        Name = "ValorCTE",
+                        SortMode = DataGridViewColumnSortMode.Programmatic
+                    };
+                    BSoftDataGrid.Columns.Add(colFiltro);
+                }
+
                 // 4. Atribui a fonte de dados
                 BSoftDataGrid.DataSource = bs;
+
+                Dictionary<string, double> keyValues = new Dictionary<string, double>();
+
+                if (BSoftDataGrid.Columns.Contains("ValorCTE"))
+                {
+                    foreach (DataGridViewRow row in BSoftDataGrid.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        string cte = row.Cells["IdBus"].Value?.ToString();
+                        if (!keyValues.ContainsKey(cte))
+                        {
+                            keyValues.Add(cte, 0);
+                            Console.Write($"{cte}; ");
+                        }
+                    }
+
+                    Console.WriteLine();
+
+                    int contagem = 1;
+                    foreach (object[] linha in linhasPlanilhaCTE)
+                    {
+                        Console.WriteLine("Linha " + contagem + ": CTE DA LINHA: " + linha[25].ToString());
+                        string ctePlanilha = linha[25]?.ToString();
+                        if (!string.IsNullOrEmpty(ctePlanilha) && keyValues.ContainsKey(ctePlanilha))
+                        {
+                            string valorString = linha[16]?.ToString();
+                            double valor = 0;
+                            double.TryParse(
+                                valorString?.Replace(".", "").Replace(",", "."),
+                                NumberStyles.Any,
+                                CultureInfo.InvariantCulture,
+                                out valor
+                            );
+
+                            keyValues[ctePlanilha] += valor;
+                        }
+                        contagem++;
+                    }
+
+                    Console.WriteLine();
+
+                    contagem = 1;
+                    int contagemLinhas = BSoftDataGrid.RowCount;
+
+                    // Salva os estados atuais
+                    var antigoAutoSize = BSoftDataGrid.AutoSizeColumnsMode;
+                    bool antigoEnabled = BSoftDataGrid.Enabled;
+
+                    // Desativa atualizações visuais e interações
+                    BSoftDataGrid.Enabled = false;
+                    BSoftDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                    BSoftDataGrid.SuspendLayout();
+
+                    foreach (DataGridViewRow row in BSoftDataGrid.Rows)
+                    {
+                        try
+                        {
+                            if (row.IsNewRow) continue;
+                            string cte = row.Cells["IdBus"].Value?.ToString();
+                            Console.WriteLine(contagem + " - " + cte + "; LEFT: " + (contagemLinhas - contagem));
+                            row.Cells["ValorCTE"].Value = keyValues[cte];
+                            contagem++;
+                        }
+                        catch (KeyNotFoundException)
+                        {
+                            continue;
+                        }
+                    }
+
+                    // Retoma os estados antigos
+                    BSoftDataGrid.ResumeLayout();
+                    BSoftDataGrid.AutoSizeColumnsMode = antigoAutoSize;
+                    BSoftDataGrid.Enabled = antigoEnabled;
+
+                }
             }
             BSoftDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             Descontos.Text = string.Empty;
             CopiarDataGrid(BSoftDataGrid, CRBsoftDatagridSave);
             BuscarDescontos();
+            DateTime contagemtempo2 = DateTime.Now;
+            TimeSpan timeSpan = contagemtempo2 - contagemtempo1;
+            string timeSpanToString = timeSpan.Hours + ":" + timeSpan.Minutes + ":" + timeSpan.Seconds + ":" + timeSpan.Milliseconds + ":" + timeSpan.Nanoseconds;
+            Console.WriteLine("TEMPO PASSADO: " + timeSpanToString);
         }
 
         private void RefreshAcerto_Click(object sender, EventArgs e)
@@ -432,7 +531,7 @@ namespace Checka
             using (ExcelPackage pacote = new ExcelPackage(new FileInfo("C:\\Users\\moniq\\desktop\\Info.xlsx")))
             {
                 ExcelWorksheet planilha = pacote.Workbook.Worksheets.FirstOrDefault(sheet => sheet.Name == "BSOFT");
-
+                ExcelWorksheet planilhaCte = pacote.Workbook.Worksheets.FirstOrDefault(sheet => sheet.Name == "CTE");
                 using (MySqlConnection conexao = new MySqlConnection(Auxl.Str))
                 {
                     conexao.Open();
@@ -447,9 +546,25 @@ namespace Checka
                         string valor = planilha.Cells[i, 28].Value?.ToString();
                         string frete = planilha.Cells[i, 117].Value?.ToString();
                         int empresa = int.Parse(planilha.Cells[i, 5].Value?.ToString());
-
+                        string CodigoCliente = planilha.Cells[i, 53].Value?.ToString();
+                        string IdBus = planilha.Cells[i, 120].Value?.ToString();
                         string conc = planilha.Cells[i, 118].Value?.ToString(); // <- CONC (coluna 118)
+                        int rowCount = planilhaCte.Dimension.End.Row;
 
+                        int LinhaCte = Enumerable.Range(2, rowCount - 1) // começa da linha 2 (ignorando header)
+                            .Select(linha => new
+                            {
+                                Linha = linha,
+                                ValorCelula26 = planilhaCte.Cells[linha, 26].Text
+                            })
+                            .Where(x => !string.IsNullOrEmpty(x.ValorCelula26) && x.ValorCelula26.ToString() == IdBus.ToString())
+                            .Select(x => x.Linha)
+                            .FirstOrDefault();
+                        string cte = (!(LinhaCte < 2)) ? planilhaCte.Cells[LinhaCte, 26].Value?.ToString() : "0";
+                        if (cte != "0")
+                        {
+                            Console.WriteLine($"DOCUMENTO: {numeroDocumento} || CTE: {cte}");
+                        }
                         // Verifica se o CONC já existe
                         string checkQuery = "SELECT Validado FROM checka.crbsoft WHERE CONC = @conc";
                         using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conexao))
@@ -462,9 +577,9 @@ namespace Checka
                                 // INSERT: não existe no banco
                                 string insertQuery = @"
                             INSERT INTO checka.crbsoft 
-                            (CONC, NumeroDocumento, Cliente, CentroDeReceita, Valor, DataEmissao, DataBaixa, Frete, Empresa)
+                            (CONC, NumeroDocumento, Cliente, CentroDeReceita, Valor, DataEmissao, DataBaixa, Frete, Empresa, CodigoCliente, IdBus, CTE)
                             VALUES 
-                            (@conc, @numero, @cliente, @centro, @valor, @emissao, @baixa, @frete, @empresa)";
+                            (@conc, @numero, @cliente, @centro, @valor, @emissao, @baixa, @frete, @empresa, @codigoCliente, @IdBus, @cte)";
                                 using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conexao))
                                 {
                                     insertCmd.Parameters.AddWithValue("@conc", conc);
@@ -476,6 +591,9 @@ namespace Checka
                                     insertCmd.Parameters.AddWithValue("@baixa", dataBaixa);
                                     insertCmd.Parameters.AddWithValue("@frete", frete);
                                     insertCmd.Parameters.AddWithValue("@empresa", empresa);
+                                    insertCmd.Parameters.AddWithValue("@codigoCliente", CodigoCliente);
+                                    insertCmd.Parameters.AddWithValue("@IdBus", IdBus);
+                                    insertCmd.Parameters.AddWithValue("@cte", cte);
                                     insertCmd.ExecuteNonQuery();
                                 }
                             }
@@ -494,7 +612,10 @@ namespace Checka
                                     DataEmissao = @emissao,
                                     DataBaixa = @baixa,
                                     Frete = @frete,
-                                    Empresa = @empresa
+                                    Empresa = @empresa,
+                                    CodigoCliente = @codigoCliente,
+                                    IdBus = @IdBus,
+                                    CTE = @cte
                                 WHERE CONC = @conc";
                                     using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conexao))
                                     {
@@ -507,6 +628,9 @@ namespace Checka
                                         updateCmd.Parameters.AddWithValue("@baixa", dataBaixa);
                                         updateCmd.Parameters.AddWithValue("@frete", frete);
                                         updateCmd.Parameters.AddWithValue("@empresa", empresa);
+                                        updateCmd.Parameters.AddWithValue("@codigoCliente", CodigoCliente);
+                                        updateCmd.Parameters.AddWithValue("@IdBus", IdBus);
+                                        updateCmd.Parameters.AddWithValue("@cte", cte);
                                         updateCmd.ExecuteNonQuery();
                                     }
                                 }
@@ -563,7 +687,10 @@ namespace Checka
             if (grid.DataSource is BindingSource bs && bs.DataSource is DataTable dt)
             {
                 string coluna = grid.Columns[colIndex].DataPropertyName;
-
+                if(coluna == "ValorCTE")
+                {
+                    return;
+                }
                 var valores = dt.AsEnumerable()
                     .Select(r => r[coluna]?.ToString())
                     .Where(v => !string.IsNullOrWhiteSpace(v))
@@ -659,6 +786,7 @@ namespace Checka
                 drop.Show(grid, pt);
             }
         }
+
         private void BSoftDataGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             var culturaBR = new System.Globalization.CultureInfo("pt-BR");
@@ -673,6 +801,49 @@ namespace Checka
                     soma += valor;
                 }
             }
+
+            //Dictionary<string, double> keyValues = new Dictionary<string, double>();
+
+            //if (BSoftDataGrid.Columns.Contains("ValorCTE"))
+            //{
+            //    foreach (DataGridViewRow row in BSoftDataGrid.Rows)
+            //    {
+            //        if (row.IsNewRow) continue;
+            //        string cte = row.Cells["CTE"].Value?.ToString();
+            //        if (!keyValues.ContainsKey(cte))
+            //        {
+            //            keyValues.Add(cte, 0);
+            //        }
+            //    }
+
+            //    foreach (object[] linha in linhasPlanilhaCTE)
+            //    {
+            //        string ctePlanilha = linha[25]?.ToString();
+            //        if (!string.IsNullOrEmpty(ctePlanilha) && keyValues.ContainsKey(ctePlanilha))
+            //        {
+            //            string valorString = linha[16]?.ToString();
+            //            double valor = 0;
+            //            double.TryParse(
+            //                valorString?.Replace(".", "").Replace(",", "."),
+            //                NumberStyles.Any,
+            //                CultureInfo.InvariantCulture,
+            //                out valor
+            //            );
+
+            //            keyValues[ctePlanilha] += valor;
+            //        }
+            //    }
+
+            //    foreach (DataGridViewRow row in BSoftDataGrid.Rows)
+            //    {
+            //        if (row.IsNewRow) continue;
+            //        string cte = row.Cells["CTE"].Value?.ToString();
+            //        if (!string.IsNullOrEmpty(cte) && keyValues.ContainsKey(cte))
+            //        {
+            //            row.Cells["ValorCTE"].Value = keyValues[cte].ToString("N2");
+            //        }
+            //    }
+            // }
 
             ValorSomadoCRBsoft.Text = "TOTAL: " + soma.ToString("N2", culturaBR);
             soma2 = soma;

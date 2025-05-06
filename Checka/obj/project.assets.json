@@ -2500,19 +2500,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\moniq\\.nuget\\packages\\": {}
+    "C:\\Users\\FernandaEduardo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Checka.csproj",
+      "projectUniqueName": "D:\\Checka\\Checka\\Checka\\Checka.csproj",
       "projectName": "Checka",
-      "projectPath": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\Checka.csproj",
-      "packagesPath": "C:\\Users\\moniq\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moniq\\Desktop\\CheckaCode v1.0\\Checka\\obj\\",
+      "projectPath": "D:\\Checka\\Checka\\Checka\\Checka.csproj",
+      "packagesPath": "C:\\Users\\FernandaEduardo\\.nuget\\packages\\",
+      "outputPath": "D:\\Checka\\Checka\\Checka\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\moniq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\FernandaEduardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2520,6 +2527,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2571,7 +2579,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

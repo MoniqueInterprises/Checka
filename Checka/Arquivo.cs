@@ -130,5 +130,10 @@ namespace Checka
         {
             new Restaurar().Show();
         }
+
+        private void LimparMes_Click(object sender, EventArgs e)
+        {
+            new LimparMes().Show();
+        }
     }
 }

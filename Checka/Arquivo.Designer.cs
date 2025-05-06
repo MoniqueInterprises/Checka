@@ -37,6 +37,7 @@
             DeletarLinha = new Button();
             button3 = new Button();
             label1 = new Label();
+            LimparMes = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -109,17 +110,28 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(660, 16);
+            label1.Location = new Point(780, 16);
             label1.Name = "label1";
             label1.Size = new Size(44, 15);
             label1.TabIndex = 12;
             label1.Text = "Linhas:";
+            // 
+            // LimparMes
+            // 
+            LimparMes.Location = new Point(660, 12);
+            LimparMes.Name = "LimparMes";
+            LimparMes.Size = new Size(114, 23);
+            LimparMes.TabIndex = 13;
+            LimparMes.Text = "LIMPAR POR DATA";
+            LimparMes.UseVisualStyleBackColor = true;
+            LimparMes.Click += LimparMes_Click;
             // 
             // Arquivo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1153, 610);
+            Controls.Add(LimparMes);
             Controls.Add(label1);
             Controls.Add(button3);
             Controls.Add(DeletarLinha);
@@ -147,5 +159,6 @@
         private Button DeletarLinha;
         private Button button3;
         private Label label1;
+        private Button LimparMes;
     }
 }

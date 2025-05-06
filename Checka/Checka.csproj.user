@@ -25,6 +25,9 @@
     <Compile Update="Importar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="LimparMes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Restaurar.cs">
       <SubType>Form</SubType>
     </Compile>
