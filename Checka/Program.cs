@@ -13,8 +13,8 @@ namespace Checka
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             //AllocConsole(); // <- cria o console!
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             //ApplicationConfiguration.Initialize();
             Application.Run(new Home());
         }

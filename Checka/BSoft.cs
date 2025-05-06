@@ -83,7 +83,7 @@ namespace Checka
         private void RefreshBsoft_Click(object sender, EventArgs e)
         {
             DateTime contagemtempo1 = DateTime.Now;
-            Console.Clear();
+            //Console.Clear();
             using (MySqlConnection conexao = new MySqlConnection(Auxl.Str))
             {
                 conexao.Open();
@@ -151,16 +151,16 @@ namespace Checka
                         if (!keyValues.ContainsKey(cte))
                         {
                             keyValues.Add(cte, 0);
-                            Console.Write($"{cte}; ");
+                            //Console.Write($"{cte}; ");
                         }
                     }
 
-                    Console.WriteLine();
+                    //Console.WriteLine();
 
                     int contagem = 1;
                     foreach (object[] linha in linhasPlanilhaCTE)
                     {
-                        Console.WriteLine("Linha " + contagem + ": CTE DA LINHA: " + linha[25].ToString());
+                        //Console.WriteLine("Linha " + contagem + ": CTE DA LINHA: " + linha[25].ToString());
                         string ctePlanilha = linha[25]?.ToString();
                         if (!string.IsNullOrEmpty(ctePlanilha) && keyValues.ContainsKey(ctePlanilha))
                         {
@@ -198,7 +198,7 @@ namespace Checka
                         {
                             if (row.IsNewRow) continue;
                             string cte = row.Cells["IdBus"].Value?.ToString();
-                            Console.WriteLine(contagem + " - " + cte + "; LEFT: " + (contagemLinhas - contagem));
+                            //Console.WriteLine(contagem + " - " + cte + "; LEFT: " + (contagemLinhas - contagem));
                             row.Cells["ValorCTE"].Value = keyValues[cte];
                             contagem++;
                         }
@@ -801,6 +801,8 @@ namespace Checka
                     soma += valor;
                 }
             }
+
+            BSoftDataGrid.Columns["Conc"].Visible = false;
 
             //Dictionary<string, double> keyValues = new Dictionary<string, double>();
 

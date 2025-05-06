@@ -16,6 +16,90 @@ namespace Checka
 {
     public partial class CheckJoao : Form
     {
+        private void AtualizarDiferencasEDados()
+        {
+            // Garante que as colunas "Diferenca" existem nos DataTables
+            DataTable dt1 = (DataTable)dataGridView1.DataSource;
+            DataTable dt2 = (DataTable)dataGridView2.DataSource;
+
+            if (!dt1.Columns.Contains("Diferenca"))
+                dt1.Columns.Add("Diferenca", typeof(string));
+
+            if (!dt2.Columns.Contains("Diferenca"))
+                dt2.Columns.Add("Diferenca", typeof(string));
+
+            // Preenche "Diferenca" no dataGridView2
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                double valorA = TryParseDouble(row.Cells["TotalValor"].Value);
+                double valorB = 0.0;
+
+                foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                {
+                    if (row2.IsNewRow) continue;
+
+                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
+                    {
+                        valorB = TryParseDouble(row2.Cells["TOTAL_VALOR_FRETE"].Value);
+                        break;
+                    }
+                }
+
+                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
+            }
+
+            // Preenche "Diferenca" no dataGridView1
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                double valorA = TryParseDouble(row.Cells["TOTAL_VALOR_FRETE"].Value);
+                double valorB = 0.0;
+
+                foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                {
+                    if (row2.IsNewRow) continue;
+
+                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
+                    {
+                        valorB = TryParseDouble(row2.Cells["TotalValor"].Value);
+                        break;
+                    }
+                }
+
+                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
+            }
+
+            // Atualiza contadores
+            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
+            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
+
+            // Totais
+            double soma1 = dataGridView1.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => !r.IsNewRow)
+                .Sum(r => TryParseDouble(r.Cells["TOTAL_VALOR_FRETE"].Value));
+
+            TotalPortal.Text = "Total: " + soma1.ToString("F2");
+
+            double soma2 = dataGridView2.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => !r.IsNewRow)
+                .Sum(r => TryParseDouble(r.Cells["TotalValor"].Value));
+
+            TotalJoao.Text = "Total: " + soma2.ToString("F2");
+
+            Diff.Text = "Diferença: " + (soma1 - soma2).ToString("F2");
+        }
+
+        // Função auxiliar para parse seguro de double
+        private double TryParseDouble(object value)
+        {
+            return double.TryParse(value?.ToString()?.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double result)
+                ? result : 0.0;
+        }
         public CheckJoao()
         {
             InitializeComponent();
@@ -69,63 +153,7 @@ namespace Checka
 
                 conexao.Close();
             }
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-                object AUX1 = row.Cells[1].Value;
-                var a = dataGridView2;
-                var b = dataGridView1;
-                valorA = double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-
-                valorA = double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView2.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            double soma1 = 0;
-            var TabelaDebug = dataGridView1.Rows;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                soma1 += (double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalPortal.Text = "Total: " + soma1.ToString("F2");
-
-            double soma2 = 0;
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                soma2 += (double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalJoao.Text = "Total: " + soma2.ToString("F2");
-
-            Diff.Text = "Diferença: " + (soma1 - soma2).ToString("F2");
+            AtualizarDiferencasEDados();
             Data_Click(sender, e);
         }
 
@@ -185,137 +213,13 @@ namespace Checka
                 conexao.Close();
             }
 
-            if (!dataGridView1.Columns.Contains("Diferenca"))
-            {
-                DataGridViewTextBoxColumn coluna1 = new DataGridViewTextBoxColumn();
-                coluna1.Name = "Diferenca";
-                coluna1.HeaderText = "Diferenca";
-                coluna1.ValueType = typeof(string);
-                dataGridView1.Columns.Add(coluna1);
-
-                // precisa criar uma nova instância pro segundo grid
-                DataGridViewTextBoxColumn coluna2 = new DataGridViewTextBoxColumn();
-                coluna2.Name = "Diferenca";
-                coluna2.HeaderText = "Diferenca";
-                coluna2.ValueType = typeof(string);
-                dataGridView2.Columns.Add(coluna2);
-            }
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-                object AUX1 = row.Cells[1].Value;
-                var a = dataGridView2;
-                var b = dataGridView1;
-                valorA = double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-
-                valorA = double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView2.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            double soma1 = 0;
-            var TabelaDebug = dataGridView1.Rows;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                soma1 += (double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalPortal.Text = "Total: " + soma1.ToString("F2");
-
-            double soma2 = 0;
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                soma2 += (double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalJoao.Text = "Total: " + soma2.ToString("F2");
-
-            Diff.Text = "Diferença: " + (soma1 - soma2).ToString("F2");
+            AtualizarDiferencasEDados();
         }
 
         private void CheckJoao_Load(object sender, EventArgs e)
         {
             Refresh_Click(sender, e);
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-                object AUX1 = row.Cells[1].Value;
-                var a = dataGridView2;
-                var b = dataGridView1;
-                valorA = double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-
-                valorA = double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView2.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            double soma1 = 0;
-            var TabelaDebug = dataGridView1.Rows;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                soma1 += (double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalPortal.Text = "Total: " + soma1.ToString("F2");
-
-            double soma2 = 0;
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                soma2 += (double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalJoao.Text = "Total: " + soma2.ToString("F2");
-
-            Diff.Text = "Diferença: " + (soma1 - soma2).ToString("F2");
+            AtualizarDiferencasEDados();
         }
 
         private void LoadJoao_Click(object sender, EventArgs e)
@@ -427,176 +331,17 @@ namespace Checka
                 }
                 conexao.Close();
             }
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-                object AUX1 = row.Cells[1].Value;
-                var a = dataGridView2;
-                var b = dataGridView1;
-                valorA = double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-
-                valorA = double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView2.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            double soma1 = 0;
-            var TabelaDebug = dataGridView1.Rows;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                soma1 += (double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalPortal.Text = "Total: " + soma1.ToString("F2");
-
-            double soma2 = 0;
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                soma2 += (double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalJoao.Text = "Total: " + soma2.ToString("F2");
-
-            Diff.Text = "Diferença: " + (soma1 - soma2).ToString("F2");
+            AtualizarDiferencasEDados();
         }
 
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-                object AUX1 = row.Cells[1].Value;
-                var a = dataGridView2;
-                var b = dataGridView1;
-                valorA = double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-
-                valorA = double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView2.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            double soma1 = 0;
-            var TabelaDebug = dataGridView1.Rows;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                soma1 += (double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalPortal.Text = "Total: " + soma1.ToString("F2");
-
-            double soma2 = 0;
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                soma2 += (double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalJoao.Text = "Total: " + soma2.ToString("F2");
-
-            Diff.Text = "Diferença: " + (soma1 - soma2).ToString("F2");
+            AtualizarDiferencasEDados();
         }
 
         private void dataGridView2_Sorted(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-                object AUX1 = row.Cells[1].Value;
-                var a = dataGridView2;
-                var b = dataGridView1;
-                valorA = double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                double valorA = 0.0;
-                double valorB = 0.0;
-
-                valorA = double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal) ? valorFinal : 0.0;
-                foreach (DataGridViewRow row2 in dataGridView2.Rows)
-                {
-                    if (row2.Cells["Frete"].Value?.ToString() == row.Cells["Frete"].Value?.ToString())
-                    {
-                        valorB = double.TryParse(row2.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal2) ? valorFinal2 : 0.0;
-                        break;
-                    }
-                }
-                row.Cells["Diferenca"].Value = (valorA - valorB).ToString("F2");
-            }
-
-            label3.Text = "Linhas: " + (dataGridView1.RowCount - 1);
-            label4.Text = "Linhas: " + (dataGridView2.RowCount - 1);
-
-            double soma1 = 0;
-            var TabelaDebug = dataGridView1.Rows;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                soma1 += (double.TryParse(row.Cells["TOTAL_VALOR_FRETE"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalPortal.Text = "Total: " + soma1.ToString("F2");
-
-            double soma2 = 0;
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                soma2 += (double.TryParse(row.Cells["TotalValor"].Value?.ToString().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double valorFinal)) ? valorFinal : 0.0;
-            }
-            TotalJoao.Text = "Total: " + soma2.ToString("F2");
-
-            Diff.Text = "Diferença: " + (soma1 - soma2).ToString("F2");
+            AtualizarDiferencasEDados();
         }
 
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -614,6 +359,11 @@ namespace Checka
                     row.DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
+        }
+
+        private void dataGridView2_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
         }
     }
 }

@@ -67,6 +67,7 @@
             dataGridView2.Name = "dataGridView2";
             dataGridView2.Size = new Size(777, 907);
             dataGridView2.TabIndex = 1;
+            dataGridView2.ColumnHeaderMouseClick += dataGridView2_ColumnHeaderMouseClick;
             dataGridView2.Sorted += dataGridView2_Sorted;
             // 
             // label1
